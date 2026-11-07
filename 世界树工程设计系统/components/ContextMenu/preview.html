@@ -1,0 +1,30 @@
+<!-- @dsCard group="导航" height=250 subtitle="右键唤起" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ContextMenu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'tt-demo-row', style: { alignItems: 'flex-start' } },
+  h(T.ContextMenu, { inline: true, label: '档案菜单', items: [
+    { label: '新建同级档案', icon: 'sibling' },
+    { label: '新建子档案', icon: 'child' },
+    { divider: true },
+    { label: '重命名', icon: 'edit', shortcut: 'F2' },
+    { divider: true },
+    { label: '删除（连同 3 个子档案）', icon: 'trash', danger: true }] }),
+  h(T.ContextMenu, { inline: true, label: '画布方块菜单', items: [
+    { label: '新建子级', icon: 'child' },
+    { label: '从这里连线', icon: 'connect' },
+    { label: '调转方向', icon: 'swap', disabled: true, hint: '反向已存在' },
+    { divider: true },
+    { label: '从画布移除', icon: 'close', danger: true, hint: '不删档案' }] })));
+</script>
+</body>
+</html>

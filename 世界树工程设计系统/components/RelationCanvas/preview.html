@@ -1,0 +1,45 @@
+<!-- @dsCard group="关系画布" height=600 subtitle="试试：拖动方块、从右侧圆点拉线、右键、Ctrl+滚轮" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>RelationCanvas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var archives = [
+  { id: 'c1', name: '林晚', type: '角色' }, { id: 'c2', name: '沈既白', type: '角色' }, { id: 'c3', name: '阿萝', type: '角色' },
+  { id: 'f1', name: '灯塔会', type: '势力' }, { id: 'f2', name: '港务局', type: '势力' }, { id: 'w1', name: '第七灯塔', type: '地点' }
+];
+var graph = {
+  nodes: [
+    { id: 'a', kind: 'ref', archiveId: 'c1', archive: '林晚', type: '角色', title: '林晚', x: 40, y: 150 },
+    { id: 'b', kind: 'ref', archiveId: 'c2', archive: '沈既白', type: '角色', title: '沈既白', x: 380, y: 150 },
+    { id: 'c', kind: 'ref', archiveId: 'f1', archive: '灯塔会', type: '势力', title: '灯塔会', x: 640, y: 30 },
+    { id: 'd', kind: 'ref', archiveId: 'c3', archive: '阿萝', type: '角色', title: '阿萝', x: 680, y: 300 },
+    { id: 'n1', kind: 'note', title: '她在说谎？时间线对不上——大潮那晚她不在码头。', x: 80, y: 330 },
+    { id: 'k1', kind: 'note', title: '守灯人（已失踪）', parent: 'c', x: 900, y: 0 },
+    { id: 'k2', kind: 'note', title: '账房 · 老周', parent: 'c', x: 920, y: 120 }
+  ],
+  edges: [
+    { id: 'e1', from: 'a', to: 'b', label: '旧识，互不信任' },
+    { id: 'e2', from: 'b', to: 'a', label: '暗中保护' },
+    { id: 'e3', from: 'b', to: 'c', label: '卧底' },
+    { id: 'e4', from: 'c', to: 'd', label: '名义上的监护人，实际在利用她寻找第七座灯塔的钥匙' },
+    { id: 'e5', from: 'n1', to: 'a', label: '' }
+  ]
+};
+
+var m = 60000, now = Date.now();
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(T.RelationCanvas, { name: '第一幕 · 人物纠葛', height: 568, archives: archives, defaultGraph: graph, wheelRequiresFocus: true,
+    defaultSnapshots: [
+      { label: '第一幕定稿', time: now - 40 * m, graph: { nodes: graph.nodes.slice(0, 5), edges: graph.edges.slice(0, 4) } },
+      { label: '快照 13:05', time: now - 95 * m, graph: { nodes: graph.nodes.slice(0, 3), edges: graph.edges.slice(0, 2) } }] }));
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- @dsCard group="输入" height=88 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TagInput</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 520 } },
+  h(T.TagInput, { defaultValue: ['主角', '第一幕', '雾港'] })));
+</script>
+</body>
+</html>

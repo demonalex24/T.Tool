@@ -1,0 +1,22 @@
+<!-- @dsCard group="导航" height=220 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PanelSection</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { width: 264, border: '1px solid var(--line)', borderRadius: 6, overflow: 'hidden' } },
+  h(T.PanelSection, { title: '关系画布', count: 3, actions: [{ icon: 'plus', label: '新建' }] },
+    h('div', { style: { padding: '0 6px 8px' } }, ['第一幕 · 人物纠葛', '灯塔会内部', '七年前的那场大潮'].map(function (n) {
+      return h('button', { key: n, className: 'tt-refs__item' }, h(T.Icon, { name: 'canvas', size: 15 }), h('span', null, n));
+    }))),
+  h(T.PanelSection, { title: '预设库', defaultOpen: false, actions: [{ icon: 'preset', label: '打开' }] })));
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- @dsCard group="档案" height=150 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ArchiveHeader</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 760 } },
+  h(T.ArchiveHeader, { id: 'n_7f3k2', typeSuggestions: ['角色', '势力', '世界观', '地点', '物品', '剧情'],
+    defaultValue: { name: '林晚', type: '角色', tags: ['主角', '第一幕', '雾港警署'] } })));
+</script>
+</body>
+</html>

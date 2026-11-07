@@ -1,0 +1,20 @@
+<!-- @dsCard group="积木模块" height=330 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>RadarModule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 720 } },
+  h(T.ModuleCard, { kind: 'radar', defaultTitle: '能力' },
+    h(T.RadarModule, { defaultData: { max: 10, rows: [
+      { name: '力', value: 4 }, { name: '敏', value: 7.5 }, { name: '智', value: 9 }, { name: '魅', value: 5 }, { name: '体', value: 6 }, { name: '意', value: 8 }] } }))));
+</script>
+</body>
+</html>

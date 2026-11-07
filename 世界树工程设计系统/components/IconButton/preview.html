@@ -1,0 +1,32 @@
+<!-- @dsCard group="基础" height=150 subtitle="图标必须带文字" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>IconButton</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+function Demo() {
+  var s = React.useState(true), on = s[0], set = s[1];
+  return h('div', { className: 'tt-demo-col' },
+    h('div', { className: 'tt-demo-row', style: { gap: 2 } },
+      h(T.IconButton, { icon: 'undo', label: '撤销', shortcut: 'Ctrl+Z' }),
+      h(T.IconButton, { icon: 'snapshot', label: '存快照', shortcut: 'Ctrl+S' }),
+      h(T.IconButton, { icon: 'history', label: '历史快照' }),
+      h(T.IconButton, { icon: 'connect', label: '连线', active: on, onClick: function () { set(!on); } }),
+      h(T.IconButton, { icon: 'zoom-in', label: '放大', disabled: true })),
+    h('div', { className: 'tt-demo-row', style: { gap: 2 } },
+      h(T.IconButton, { layout: 'inline', icon: 'arrow-up', label: '上移' }),
+      h(T.IconButton, { layout: 'inline', icon: 'arrow-down', label: '下移' }),
+      h(T.IconButton, { layout: 'inline', icon: 'trash', label: '删除', tone: 'danger' }),
+      h(T.IconButton, { layout: 'inline', icon: 'plus', label: '新建档案' })));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

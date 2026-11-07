@@ -1,0 +1,21 @@
+<!-- @dsCard group="输入" height=250 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TextField</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'tt-demo-col', style: { maxWidth: 560 } },
+  h(T.TextField, { label: '画布名称', defaultValue: '第一幕 · 人物纠葛' }),
+  h(T.TextField, { label: '正文', multiline: true, variant: 'prose', rows: 3,
+    defaultValue: '雾港的灯塔已经熄了七年，可每逢大潮，码头上的人仍会听见钟声。',
+    hint: '正文用宋体，像写在稿纸上。没有字数限制，也不是必填。' })));
+</script>
+</body>
+</html>

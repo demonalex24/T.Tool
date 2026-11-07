@@ -1,0 +1,32 @@
+<!-- @dsCard group="导航" height=360 subtitle="拖到上/下方 = 同级，拖到中间 = 子档案" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ProjectTree</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var nodes = [
+  { id: 'w', name: '世界观', children: [
+    { id: 'w1', name: '雾港', type: '地点', children: [
+      { id: 'w11', name: '旧码头', type: '地点' },
+      { id: 'w12', name: '第七灯塔', type: '地点', children: [ { id: 'w121', name: '灯室里的航海日志（第三卷 · 残页）', type: '物品' } ] } ] },
+    { id: 'w2', name: '潮汐历法', type: '设定' } ] },
+  { id: 'c', name: '角色', children: [
+    { id: 'c1', name: '林晚', type: '角色' },
+    { id: 'c2', name: '沈既白', type: '角色' },
+    { id: 'c3', name: '阿萝', type: '角色' } ] },
+  { id: 'f', name: '势力', children: [
+    { id: 'f1', name: '灯塔会', type: '势力', children: [ { id: 'f11', name: '守灯人', type: '职位' }, { id: 'f12', name: '账房', type: '职位' } ] },
+    { id: 'f2', name: '港务局', type: '势力' } ] }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { width: 280, height: 330, border: '1px solid var(--line)', borderRadius: 6, background: 'var(--surface)', overflow: 'hidden' } },
+  h(T.ProjectTree, { defaultNodes: nodes, defaultSelectedId: 'c1', defaultExpanded: ['w', 'w1', 'w12', 'c', 'f'] })));
+</script>
+</body>
+</html>

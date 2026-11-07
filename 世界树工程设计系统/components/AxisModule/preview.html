@@ -1,0 +1,22 @@
+<!-- @dsCard group="积木模块" height=230 subtitle="I 形游标，不用色块填充" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AxisModule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 720 } },
+  h(T.ModuleCard, { kind: 'axis', defaultTitle: '性格倾向' },
+    h(T.AxisModule, { defaultData: { rows: [
+      { left: '内向', right: '外向', value: -24 },
+      { left: '守序', right: '混乱', value: 40 },
+      { left: '善良', right: '邪恶', value: 0 }] } }))));
+</script>
+</body>
+</html>

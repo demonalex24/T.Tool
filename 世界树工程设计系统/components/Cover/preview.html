@@ -1,0 +1,56 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>世界树工程 T.Tool</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--surface); color: var(--ink); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .moss { fill: var(--moss); }
+  .board { fill: var(--ink); }
+  .sticky { fill: var(--sticky); }
+  .card { fill: var(--surface-raised); }
+  .blk { rx: var(--radius-md); }
+  .sm { rx: var(--radius-sm); }
+  .thread { stroke: var(--thread); stroke-width: 2; stroke-linecap: round; fill: none; }
+  .pin { fill: var(--surface-raised); stroke: var(--thread); stroke-width: 2; }
+  .words { position: absolute; left: var(--space-6); bottom: var(--space-6); max-width: 440px; }
+  .name { margin: 0; font-family: var(--font-serif); font-size: 80px; line-height: .95; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+  .tag { margin: var(--space-3) 0 0 2px; font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      moss 136×248 bled off the top (the world-tree leaf, the one action colour) · ink 312×264 board bled off right and bottom · sticky 104×104 and surface-raised 120×64 pinned on the board — ≈45% of 960×288
+  arrangement one tall moss slab beside a dark corkboard; the two paper pieces sit on the board like a detective wall
+  pattern     a literal motif: three thread lines between ring pins, from "茜红 thread 只给关系线" — the canvas's red string, nothing else
+  scales      sides in space-2 multiples; gutter space-8; corners radius-md (slab, board, card) and radius-sm (sticky); pins r = space-1 + 1
+-->
+<rect class="moss blk" x="16" y="-8" width="136" height="248" rx="10"/>
+<rect class="board blk" x="184" y="40" width="312" height="264" rx="10"/>
+<rect class="sticky sm" x="216" y="80" width="104" height="104" rx="6"/>
+<rect class="card blk" x="344" y="136" width="120" height="64" rx="10"/>
+<path class="thread" d="M112 72 L268 104"/>
+<path class="thread" d="M268 104 L404 152"/>
+<path class="thread" d="M80 192 L404 152"/>
+<circle class="pin" cx="112" cy="72" r="5"/>
+<circle class="pin" cx="80" cy="192" r="5"/>
+<circle class="pin" cx="268" cy="104" r="5"/>
+<circle class="pin" cx="404" cy="152" r="5"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">世界树工程<br>T.Tool</h1>
+<p class="tag">给虚构世界一个只属于你的工程。</p>
+</div>
+</div>
+</body>
+</html>

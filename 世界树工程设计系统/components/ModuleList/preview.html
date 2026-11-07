@@ -1,0 +1,24 @@
+<!-- @dsCard group="积木模块" height=760 subtitle="拖动、上下移、右键插入" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ModuleList</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var L = T.ModuleList;
+var mods = [
+  { id: 'm1', kind: 'text', title: '人物简介', data: { text: '雾港警署唯一的女探员。她不信鬼神，只信潮汐表。' } },
+  { id: 'm2', kind: 'axis', title: '性格倾向', data: { rows: [{ left: '内向', right: '外向', value: -24 }, { left: '守序', right: '混乱', value: 40 }] } },
+  { id: 'm3', kind: 'radar', title: '能力', data: { max: 10, rows: [{ name: '力', value: 4 }, { name: '敏', value: 7.5 }, { name: '智', value: 9 }, { name: '魅', value: 5 }, { name: '体', value: 6 }] } },
+  { id: 'm4', kind: 'bool', title: '状态', data: { rows: [{ statement: '是否拥有超自然能力？', value: false, yes: '是', no: '否' }] } }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 720 } }, h(L, { defaultModules: mods })));
+</script>
+</body>
+</html>

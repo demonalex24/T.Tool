@@ -1,0 +1,330 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-07T19:16:09.026Z"
+  },
+  "title": "世界树工程 T.Tool",
+  "namespace": "TTool",
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18.3.1",
+      "global": "React",
+      "file": "components/lib/react.production.min.js"
+    },
+    {
+      "name": "react-dom",
+      "version": "18.3.1",
+      "global": "ReactDOM",
+      "file": "components/lib/react-dom.production.min.js"
+    }
+  ],
+  "sections": {},
+  "groups": [
+    "Icons"
+  ],
+  "assetGroups": {
+    "Icons": {
+      "name": "Icons",
+      "tile": "xs",
+      "order": [
+        "paperclip.svg",
+        "canvas.svg",
+        "archive.svg",
+        "folder.svg",
+        "tree.svg",
+        "plus.svg",
+        "child.svg",
+        "sibling.svg",
+        "edit.svg",
+        "trash.svg",
+        "close.svg",
+        "undo.svg",
+        "snapshot.svg",
+        "history.svg",
+        "connect.svg",
+        "note.svg",
+        "swap.svg",
+        "fit.svg",
+        "zoom-in.svg",
+        "zoom-out.svg",
+        "save.svg",
+        "export.svg",
+        "import.svg",
+        "preset.svg",
+        "tag.svg",
+        "search.svg",
+        "jump.svg",
+        "grip.svg",
+        "more.svg",
+        "arrow-up.svg",
+        "arrow-down.svg",
+        "chevron-right.svg",
+        "chevron-down.svg",
+        "check.svg",
+        "info.svg",
+        "warn.svg",
+        "mod-text.svg",
+        "mod-number.svg",
+        "mod-axis.svg",
+        "mod-radar.svg",
+        "mod-bool.svg"
+      ],
+      "files": {
+        "paperclip.svg": {
+          "name": "paperclip.svg",
+          "blob": "2d1589454d9018529c7483134b2bdbe4",
+          "size": 306,
+          "type": "image/svg+xml"
+        },
+        "canvas.svg": {
+          "name": "canvas.svg",
+          "blob": "e840ed1c7abd634fd145a48cddf47821",
+          "size": 438,
+          "type": "image/svg+xml"
+        },
+        "archive.svg": {
+          "name": "archive.svg",
+          "blob": "56913152f7c188518c47d6e455ebad11",
+          "size": 278,
+          "type": "image/svg+xml"
+        },
+        "folder.svg": {
+          "name": "folder.svg",
+          "blob": "2f77ea80a008e46e3bd46452adf45729",
+          "size": 301,
+          "type": "image/svg+xml"
+        },
+        "tree.svg": {
+          "name": "tree.svg",
+          "blob": "7a493f8c6ca4a6f6bf1e04b6585589fc",
+          "size": 306,
+          "type": "image/svg+xml"
+        },
+        "plus.svg": {
+          "name": "plus.svg",
+          "blob": "3ea77e62ea5e7791df128bb134f25f47",
+          "size": 225,
+          "type": "image/svg+xml"
+        },
+        "child.svg": {
+          "name": "child.svg",
+          "blob": "764604bde5f73b105e1bbbb4262f0a9d",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "sibling.svg": {
+          "name": "sibling.svg",
+          "blob": "32355b94137dc2fd7c61f7dec44f2ba9",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "edit.svg": {
+          "name": "edit.svg",
+          "blob": "75c1fcde4b7b94039d8b60950e526af0",
+          "size": 245,
+          "type": "image/svg+xml"
+        },
+        "trash.svg": {
+          "name": "trash.svg",
+          "blob": "32ea72a0a826028cff83c1d6e4a8468a",
+          "size": 351,
+          "type": "image/svg+xml"
+        },
+        "close.svg": {
+          "name": "close.svg",
+          "blob": "ef28c22cf8983d11182a71e4e0bfecf5",
+          "size": 229,
+          "type": "image/svg+xml"
+        },
+        "undo.svg": {
+          "name": "undo.svg",
+          "blob": "f4298984faef10fb27787c4e4cf88575",
+          "size": 253,
+          "type": "image/svg+xml"
+        },
+        "snapshot.svg": {
+          "name": "snapshot.svg",
+          "blob": "6c96c5f5bdeaf516f1fa30a74d056f45",
+          "size": 292,
+          "type": "image/svg+xml"
+        },
+        "history.svg": {
+          "name": "history.svg",
+          "blob": "cb938abdc16e47e600ff3b39c353c1a7",
+          "size": 276,
+          "type": "image/svg+xml"
+        },
+        "connect.svg": {
+          "name": "connect.svg",
+          "blob": "eda3a235a32938ac396eeb140912ef9c",
+          "size": 320,
+          "type": "image/svg+xml"
+        },
+        "note.svg": {
+          "name": "note.svg",
+          "blob": "337a9c3e6422be82f824f64ef1fac3f8",
+          "size": 250,
+          "type": "image/svg+xml"
+        },
+        "swap.svg": {
+          "name": "swap.svg",
+          "blob": "22cbec9a94524658fcb090a2de75bb61",
+          "size": 291,
+          "type": "image/svg+xml"
+        },
+        "fit.svg": {
+          "name": "fit.svg",
+          "blob": "d95653c7a0d9aa82cb003aee27150f64",
+          "size": 271,
+          "type": "image/svg+xml"
+        },
+        "zoom-in.svg": {
+          "name": "zoom-in.svg",
+          "blob": "b42b50794ad85e9a0d84a02468a30431",
+          "size": 302,
+          "type": "image/svg+xml"
+        },
+        "zoom-out.svg": {
+          "name": "zoom-out.svg",
+          "blob": "c94b8fe56c7769d52f6966cfc2b21f7d",
+          "size": 281,
+          "type": "image/svg+xml"
+        },
+        "save.svg": {
+          "name": "save.svg",
+          "blob": "f6be7752f32e37b1177fa9847778f8ef",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "export.svg": {
+          "name": "export.svg",
+          "blob": "1392ffe38f6f1093c3b78cfbba166cba",
+          "size": 263,
+          "type": "image/svg+xml"
+        },
+        "import.svg": {
+          "name": "import.svg",
+          "blob": "8599b340eec2ef49c689d00207ea058e",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "preset.svg": {
+          "name": "preset.svg",
+          "blob": "978ec546376c3cd8a83825a10e109db5",
+          "size": 265,
+          "type": "image/svg+xml"
+        },
+        "tag.svg": {
+          "name": "tag.svg",
+          "blob": "18d9103a5a725bef4192db16061103b7",
+          "size": 264,
+          "type": "image/svg+xml"
+        },
+        "search.svg": {
+          "name": "search.svg",
+          "blob": "741101703a94f053225e64834f75d14c",
+          "size": 270,
+          "type": "image/svg+xml"
+        },
+        "jump.svg": {
+          "name": "jump.svg",
+          "blob": "da3faee8bb515b9a8f93f79f8738e441",
+          "size": 232,
+          "type": "image/svg+xml"
+        },
+        "grip.svg": {
+          "name": "grip.svg",
+          "blob": "50fe53322814bd0a212e8c0fa0440c1b",
+          "size": 312,
+          "type": "image/svg+xml"
+        },
+        "more.svg": {
+          "name": "more.svg",
+          "blob": "f74876ed2eccb041e0cb155b1b0dde86",
+          "size": 250,
+          "type": "image/svg+xml"
+        },
+        "arrow-up.svg": {
+          "name": "arrow-up.svg",
+          "blob": "1f6f129ae85cba55d8b36f7a6a106582",
+          "size": 239,
+          "type": "image/svg+xml"
+        },
+        "arrow-down.svg": {
+          "name": "arrow-down.svg",
+          "blob": "1ca0d982958cbf1dc21bd7683d7e8467",
+          "size": 240,
+          "type": "image/svg+xml"
+        },
+        "chevron-right.svg": {
+          "name": "chevron-right.svg",
+          "blob": "71bbdbfcc9b35f4186cd5a3583dd0780",
+          "size": 211,
+          "type": "image/svg+xml"
+        },
+        "chevron-down.svg": {
+          "name": "chevron-down.svg",
+          "blob": "a94e15fc9674858205b9035f2bdf121a",
+          "size": 211,
+          "type": "image/svg+xml"
+        },
+        "check.svg": {
+          "name": "check.svg",
+          "blob": "0855b35e36cd31087880bf59a630ff6a",
+          "size": 217,
+          "type": "image/svg+xml"
+        },
+        "info.svg": {
+          "name": "info.svg",
+          "blob": "d480e5c46374abcbdbc2ff843445ee59",
+          "size": 284,
+          "type": "image/svg+xml"
+        },
+        "warn.svg": {
+          "name": "warn.svg",
+          "blob": "32cc0f4411b10616dcc188c5bb8c2a49",
+          "size": 261,
+          "type": "image/svg+xml"
+        },
+        "mod-text.svg": {
+          "name": "mod-text.svg",
+          "blob": "f9734c8ac3314b7283f9dfd522b9a504",
+          "size": 263,
+          "type": "image/svg+xml"
+        },
+        "mod-number.svg": {
+          "name": "mod-number.svg",
+          "blob": "1de07a5aac3a415d0c2cbee8d2979d62",
+          "size": 269,
+          "type": "image/svg+xml"
+        },
+        "mod-axis.svg": {
+          "name": "mod-axis.svg",
+          "blob": "01ae75f7ccec92bd6e94421314011797",
+          "size": 321,
+          "type": "image/svg+xml"
+        },
+        "mod-radar.svg": {
+          "name": "mod-radar.svg",
+          "blob": "e74f872d9e9abca22bb00eec6bad8d2f",
+          "size": 281,
+          "type": "image/svg+xml"
+        },
+        "mod-bool.svg": {
+          "name": "mod-bool.svg",
+          "blob": "f557638261342c62e00b8eccb6c8d4b4",
+          "size": 307,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  }
+}

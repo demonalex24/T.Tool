@@ -1,0 +1,26 @@
+<!-- @dsCard group="基础" height=76 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Toolbar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(T.Toolbar, { label: '项目工具' },
+    h(T.IconButton, { icon: 'archive', label: '新建档案' }),
+    h(T.IconButton, { icon: 'save', label: '保存', shortcut: 'Ctrl+S' }),
+    h(T.IconButton, { icon: 'export', label: '导出' }),
+    h(T.Toolbar.Divider),
+    h(T.IconButton, { icon: 'preset', label: '预设库' }),
+    h(T.IconButton, { icon: 'canvas', label: '关系画布' }),
+    h(T.Toolbar.Spacer),
+    h('span', { className: 'tt-demo-cap', style: { paddingRight: 8 } }, '已保存 · 14:32')));
+</script>
+</body>
+</html>

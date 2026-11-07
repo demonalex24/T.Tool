@@ -1,0 +1,21 @@
+<!-- @dsCard group="关系画布" height=150 subtitle="📎 档案引用 · 便签" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>CanvasNode</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'tt-demo-row', style: { gap: 28, padding: '14px 8px', background: 'var(--canvas)', borderRadius: 6, alignItems: 'flex-start' } },
+  h(T.CanvasNode, { static: true, kind: 'ref', title: '林晚', subtitle: '角色' }),
+  h(T.CanvasNode, { static: true, kind: 'ref', title: '雨夜的林晚', subtitle: '档案：林晚', selected: true, showHandle: true }),
+  h(T.CanvasNode, { static: true, kind: 'ref', title: '灯塔会', subtitle: '势力', childCount: 3, collapsed: true }),
+  h(T.CanvasNode, { static: true, kind: 'note', title: '她在说谎？时间线对不上——大潮那晚她不在码头。' })));
+</script>
+</body>
+</html>

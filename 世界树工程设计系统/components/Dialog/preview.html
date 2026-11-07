@@ -1,0 +1,21 @@
+<!-- @dsCard group="反馈" height=260 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Dialog</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(
+  h(T.Dialog, { inline: true, title: '删除“灯塔会”？', onClose: function () {},
+    footer: [h(T.Button, { key: 'c' }, '取消'), h(T.Button, { key: 'd', variant: 'danger' }, '删除档案')] },
+    h('p', null, '它下面的 3 个子档案会一起删除。'),
+    h('p', { style: { color: 'var(--ink-muted)', fontSize: 13 } }, '有 2 张关系画布引用了它，那里的方块会变成“档案已删除”的灰色方块，连线保留。')));
+</script>
+</body>
+</html>

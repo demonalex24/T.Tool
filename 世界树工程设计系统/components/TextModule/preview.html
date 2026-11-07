@@ -1,0 +1,19 @@
+<!-- @dsCard group="积木模块" height=230 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TextModule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 640 } },
+  h(T.ModuleCard, { kind: 'text', defaultTitle: '人物简介' },
+    h(T.TextModule, { defaultData: { text: '雾港警署唯一的女探员，左手缺一根小指。七年前大潮那晚，她的父亲——第七灯塔的守灯人——连同灯一起消失了。\n她不信鬼神，只信潮汐表。' } }))));
+</script>
+</body>
+</html>

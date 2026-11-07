@@ -1,0 +1,19 @@
+<!-- @dsCard group="积木模块" height=150 subtitle="所有模块共用的外壳" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ModuleCard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 640 } },
+  h(T.ModuleCard, { kind: 'text', defaultTitle: '人物简介', canMoveUp: false, onDragStart: function () {} },
+    h('div', { className: 'tt-demo-cap' }, '模块内容放在这里。标题可直接改；左侧把手拖动排序；上移、下移、删除都带文字。'))));
+</script>
+</body>
+</html>

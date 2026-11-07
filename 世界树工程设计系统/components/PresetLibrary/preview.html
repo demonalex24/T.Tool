@@ -1,0 +1,31 @@
+<!-- @dsCard group="档案" height=520 subtitle="只存结构，不存内容" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PresetLibrary</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var L = T.ModuleList;
+var current = [
+  { id: 'x1', kind: 'text', title: '人物简介', data: { text: '……' } },
+  { id: 'x2', kind: 'axis', title: '性格倾向', data: { rows: [{ left: '内向', right: '外向', value: -24 }] } },
+  { id: 'x3', kind: 'radar', title: '能力', data: L.kinds.radar.make() }
+];
+var presets = [
+  { id: 'p1', name: '主要角色', updated: Date.now() - 86400000 * 2, modules: L.toPreset([
+    { kind: 'text', title: '人物简介', data: { text: '' } }, { kind: 'number', title: '基础数值', data: { rows: [{ label: '年龄', value: '27', unit: '岁' }] } },
+    { kind: 'axis', title: '性格倾向', data: L.kinds.axis.make() }, { kind: 'radar', title: '能力', data: L.kinds.radar.make() }, { kind: 'bool', title: '状态', data: L.kinds.bool.make() }]) },
+  { id: 'p2', name: '势力档案', updated: Date.now() - 86400000 * 6, modules: L.toPreset([
+    { kind: 'text', title: '宗旨与历史', data: { text: '' } }, { kind: 'number', title: '规模', data: { rows: [{ label: '成员', value: '', unit: '人' }] } }, { kind: 'axis', title: '立场', data: { rows: [{ left: '保守', right: '激进', value: 0 }] } }]) }
+];
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { width: 340, height: 500, display: 'flex', border: '1px solid var(--line)', borderRadius: 6, overflow: 'hidden' } },
+  h(T.PresetLibrary, { style: { flex: 1 }, defaultPresets: presets, currentModules: current, onImport: function () {} })));
+</script>
+</body>
+</html>

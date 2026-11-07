@@ -1,0 +1,202 @@
+<!-- @dsCard group="页面" height=800 width=1280 page subtitle="完整工作台：项目树 · 多开档案 · 模块 · 预设库 · 关系画布" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Workbench</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+<style>
+html, body { height: 100%; }
+#root { height: 100%; }
+.wb { display: grid; grid-template-columns: var(--size-sidebar) 1fr; grid-template-rows: auto 1fr auto; height: 100%; min-height: 760px; background: var(--bg); }
+.wb-top { grid-column: 1 / -1; }
+.wb-brand { display: flex; flex-direction: column; justify-content: center; padding: 0 16px 0 6px; margin-right: 4px; min-width: 200px; }
+.wb-brand b { font-family: var(--font-serif); font-size: 18px; line-height: 24px; font-weight: 700; }
+.wb-brand span { font-family: var(--font-mono); font-size: 11px; line-height: 16px; color: var(--ink-muted); }
+.wb-side { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--line); background: var(--surface); }
+.wb-main { display: flex; min-width: 0; min-height: 0; }
+.wb-doc { display: flex; flex-direction: column; flex: 1; min-width: 0; min-height: 0; }
+.wb-scroll { flex: 1; min-height: 0; overflow: auto; background: var(--surface); }
+.wb-page { max-width: var(--size-page); margin: 0 auto; padding: var(--space-6) var(--space-8) var(--space-10); display: flex; flex-direction: column; gap: var(--space-6); }
+.wb-h { display: flex; align-items: center; gap: 8px; margin: 0 0 var(--space-3); font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--ink-muted); }
+.wb-presets { width: 320px; flex-shrink: 0; border-left: 1px solid var(--line); display: flex; }
+.wb-canvas { flex: 1; min-width: 0; padding: var(--space-4); display: flex; background: var(--surface); }
+.wb-canvas .tt-rc { flex: 1; }
+.wb-cvlist { padding: 0 0 8px; }
+.wb-cv { display: flex; align-items: center; gap: 8px; width: calc(100% - 12px); height: 30px; margin: 1px 6px; padding: 0 8px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ink); font: inherit; font-size: 14px; text-align: left; cursor: pointer; }
+.wb-cv .tt-icon { color: var(--ink-muted); }
+.wb-cv:hover { background: var(--surface-sunken); }
+.wb-cv.is-active { background: var(--moss-soft); font-weight: 500; }
+.wb-cv.is-active .tt-icon { color: var(--moss); }
+.wb-cv span:nth-child(2) { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wb-empty { margin: auto; text-align: center; color: var(--ink-muted); font-size: 13px; line-height: 22px; }
+.wb-empty b { display: block; color: var(--ink); font-family: var(--font-serif); font-size: 18px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var archives = [
+  { id: 'c1', name: '林晚', type: '角色' }, { id: 'c2', name: '沈既白', type: '角色' }, { id: 'c3', name: '阿萝', type: '角色' },
+  { id: 'f1', name: '灯塔会', type: '势力' }, { id: 'f2', name: '港务局', type: '势力' }, { id: 'w1', name: '第七灯塔', type: '地点' }
+];
+var graph = {
+  nodes: [
+    { id: 'a', kind: 'ref', archiveId: 'c1', archive: '林晚', type: '角色', title: '林晚', x: 40, y: 150 },
+    { id: 'b', kind: 'ref', archiveId: 'c2', archive: '沈既白', type: '角色', title: '沈既白', x: 380, y: 150 },
+    { id: 'c', kind: 'ref', archiveId: 'f1', archive: '灯塔会', type: '势力', title: '灯塔会', x: 640, y: 30 },
+    { id: 'd', kind: 'ref', archiveId: 'c3', archive: '阿萝', type: '角色', title: '阿萝', x: 680, y: 300 },
+    { id: 'n1', kind: 'note', title: '她在说谎？时间线对不上——大潮那晚她不在码头。', x: 80, y: 330 },
+    { id: 'k1', kind: 'note', title: '守灯人（已失踪）', parent: 'c', x: 900, y: 0 },
+    { id: 'k2', kind: 'note', title: '账房 · 老周', parent: 'c', x: 920, y: 120 }
+  ],
+  edges: [
+    { id: 'e1', from: 'a', to: 'b', label: '旧识，互不信任' },
+    { id: 'e2', from: 'b', to: 'a', label: '暗中保护' },
+    { id: 'e3', from: 'b', to: 'c', label: '卧底' },
+    { id: 'e4', from: 'c', to: 'd', label: '名义上的监护人，实际在利用她寻找第七座灯塔的钥匙' },
+    { id: 'e5', from: 'n1', to: 'a', label: '' }
+  ]
+};
+
+var U = T.ProjectTree.utils, L = T.ModuleList, useState = React.useState;
+var tree0 = [
+  { id: 'w', name: '世界观', children: [
+    { id: 'w1', name: '第七灯塔', type: '地点' },
+    { id: 'w2', name: '潮汐历法', type: '设定' } ] },
+  { id: 'c', name: '角色', children: [
+    { id: 'c1', name: '林晚', type: '角色' }, { id: 'c2', name: '沈既白', type: '角色' }, { id: 'c3', name: '阿萝', type: '角色' } ] },
+  { id: 'f', name: '势力', children: [ { id: 'f1', name: '灯塔会', type: '势力' }, { id: 'f2', name: '港务局', type: '势力' } ] }
+];
+var data0 = {
+  c1: { tags: ['主角', '第一幕', '雾港警署'], body: '雾港警署唯一的女探员，左手缺一根小指。七年前大潮那晚，她的父亲——第七灯塔的守灯人——连同灯一起消失了。她不信鬼神，只信潮汐表。',
+    modules: [
+      { id: 'm1', kind: 'number', title: '基础数值', data: { rows: [{ label: '年龄', value: '27', unit: '岁' }, { label: '身高', value: '168', unit: 'cm' }] } },
+      { id: 'm2', kind: 'axis', title: '性格倾向', data: { rows: [{ left: '内向', right: '外向', value: -24 }, { left: '守序', right: '混乱', value: 40 }] } },
+      { id: 'm3', kind: 'radar', title: '能力', data: { max: 10, rows: [{ name: '力', value: 4 }, { name: '敏', value: 7.5 }, { name: '智', value: 9 }, { name: '魅', value: 5 }, { name: '体', value: 6 }] } },
+      { id: 'm4', kind: 'bool', title: '状态', data: { rows: [{ statement: '是否拥有超自然能力？', value: false, yes: '是', no: '否' }, { statement: '是否知道灯塔的秘密？', value: null, yes: '知道', no: '不知道' }] } } ] },
+  f1: { tags: ['第一幕'], body: '名义上维护雾港七座灯塔的行会，实际掌握着港口的夜间航道。', modules: [
+      { id: 'm5', kind: 'axis', title: '立场', data: { rows: [{ left: '保守', right: '激进', value: -50 }] } } ] }
+};
+var presets0 = [
+  { id: 'p1', name: '主要角色', updated: Date.now() - 172800000, modules: L.toPreset(data0.c1.modules) },
+  { id: 'p2', name: '势力档案', updated: Date.now() - 518400000, modules: L.toPreset([{ kind: 'text', title: '宗旨与历史', data: { text: '' } }, { kind: 'number', title: '规模', data: { rows: [{ label: '成员', value: '', unit: '人' }] } }, data0.f1.modules[0]]) }
+];
+var canvases0 = [
+  { id: 'g1', name: '第一幕 · 人物纠葛', graph: graph },
+  { id: 'g2', name: '七年前的那场大潮', graph: { nodes: [
+    { id: 'x1', kind: 'ref', archiveId: 'c1', archive: '林晚', type: '角色', title: '少女时代的林晚', x: 0, y: 40 },
+    { id: 'x2', kind: 'ref', archiveId: 'w1', archive: '第七灯塔', type: '地点', title: '第七灯塔', x: 300, y: 40 },
+    { id: 'x3', kind: 'ref', archiveId: 'c1', archive: '林晚', type: '角色', title: '林晚（现在）', x: 300, y: 200 } ],
+    edges: [{ id: 'y1', from: 'x1', to: 'x2', label: '最后一次见到父亲' }] } },
+  { id: 'g3', name: '灯塔会内部', graph: { nodes: [], edges: [] } }
+];
+
+function leaves(nodes, out) { out = out || []; nodes.forEach(function (n) { if (n.children && n.children.length) leaves(n.children, out); else out.push(n); }); return out; }
+function countAll(nodes) { return nodes.reduce(function (s, n) { return s + 1 + (n.children ? countAll(n.children) : 0); }, 0); }
+
+function App() {
+  var s1 = useState(tree0), tree = s1[0], setTree = s1[1];
+  var s2 = useState(data0), data = s2[0], setData = s2[1];
+  var s3 = useState([{ id: 'c1' }, { id: 'f1' }]), tabs = s3[0], setTabs = s3[1];
+  var s4 = useState('c1'), active = s4[0], setActive = s4[1];
+  var s5 = useState('archive'), view = s5[0], setView = s5[1];
+  var s6 = useState('g1'), cvId = s6[0], setCvId = s6[1];
+  var s7 = useState(canvases0), canvases = s7[0], setCanvases = s7[1];
+  var s8 = useState(false), showPresets = s8[0], setShowPresets = s8[1];
+  var s9 = useState(presets0), presets = s9[0], setPresets = s9[1];
+  var s10 = useState(null), msg = s10[0], setMsg = s10[1];
+  var s11 = useState(null), pendingDelete = s11[0], setPendingDelete = s11[1];
+
+  function nodeOf(id) { var p = U.find(tree, id); return p ? p[p.length - 1] : null; }
+  function recOf(id) { return data[id] || { tags: [], body: '', modules: [] }; }
+  function patchRec(id, obj) { setData(function (d) { var o = Object.assign({}, d); o[id] = Object.assign({}, recOf(id), d[id], obj); return o; }); }
+  function say(text, tone) { setMsg({ text: text, tone: tone }); clearTimeout(window.__wbT); window.__wbT = setTimeout(function () { setMsg(null); }, 4200); }
+  function open(n) {
+    if (n.children && n.children.length) return;
+    setTabs(function (t) { return t.some(function (x) { return x.id === n.id; }) ? t : t.concat([{ id: n.id }]); });
+    setActive(n.id); setView('archive');
+  }
+  function newArchive() {
+    var n = { id: 'n' + Date.now().toString(36), name: '未命名档案', type: '' };
+    setTree(function (t) { return t.concat([n]); }); open(n); say('已新建档案。名称、类型、模块都可以随时改，没有必填项。');
+  }
+  var cur = nodeOf(active), rec = recOf(active);
+  var refs = canvases.map(function (c) {
+    var k = c.graph.nodes.filter(function (n) { return n.archiveId === active; }).length;
+    return k ? { id: c.id, name: c.name, count: k } : null;
+  }).filter(Boolean);
+  var tabList = tabs.map(function (t) { var n = nodeOf(t.id); return n ? { id: t.id, title: n.name, type: n.type } : null; }).filter(Boolean);
+  var archives = leaves(tree).map(function (n) { return { id: n.id, name: n.name, type: n.type }; });
+  var cv = canvases.filter(function (c) { return c.id === cvId; })[0];
+
+  var top = h(T.Toolbar, { label: '项目工具', className: 'wb-top' },
+    h('div', { className: 'wb-brand' }, h('b', null, '雾港纪事'), h('span', null, 'D:\\写作\\雾港纪事 · 已保存 14:32')),
+    h(T.IconButton, { icon: 'archive', label: '新建档案', onClick: newArchive }),
+    h(T.IconButton, { icon: 'save', label: '保存', shortcut: 'Ctrl+S', onClick: function () { say('已保存到 project.json，图片在 media/ 文件夹。'); } }),
+    h(T.IconButton, { icon: 'export', label: '导出', onClick: function () { say('导出会打包整个工程文件夹（含 media/）。只拷贝 JSON 会丢失图片。'); } }),
+    h(T.Toolbar.Divider),
+    h(T.IconButton, { icon: 'tree', label: '档案', active: view === 'archive', onClick: function () { setView('archive'); } }),
+    h(T.IconButton, { icon: 'canvas', label: '关系画布', active: view === 'canvas', onClick: function () { setView('canvas'); } }),
+    h(T.IconButton, { icon: 'preset', label: '预设库', active: showPresets && view === 'archive', disabled: view !== 'archive', onClick: function () { setShowPresets(!showPresets); } }));
+
+  var side = h('aside', { className: 'wb-side' },
+    h(T.PanelSection, { title: '项目树', count: countAll(tree), grow: true, actions: [{ icon: 'plus', label: '新建', onClick: newArchive }] },
+      h(T.ProjectTree, { nodes: tree, onChange: setTree, selectedId: view === 'archive' ? active : null, onSelect: open,
+        defaultExpanded: ['w', 'c', 'f'],
+        onRequestDelete: function (n, doDelete) { setPendingDelete({ node: n, run: doDelete }); },
+        onCreate: function (n) { open(n); } })),
+    h(T.PanelSection, { title: '关系画布', count: canvases.length, actions: [{ icon: 'plus', label: '新建', onClick: function () {
+        var c = { id: 'g' + Date.now().toString(36), name: '新画布 ' + (canvases.length + 1), graph: { nodes: [], edges: [] } };
+        setCanvases(canvases.concat([c])); setCvId(c.id); setView('canvas'); say('已新建一张空白画布。每张画布互相独立。');
+      } }] },
+      h('div', { className: 'wb-cvlist' }, canvases.map(function (c) {
+        return h('button', { key: c.id, className: 'wb-cv' + (view === 'canvas' && c.id === cvId ? ' is-active' : ''), onClick: function () { setCvId(c.id); setView('canvas'); } },
+          h(T.Icon, { name: 'canvas', size: 15 }), h('span', null, c.name), h('span', { className: 'tt-count' }, c.graph.nodes.length));
+      }))));
+
+  var editor = cur ? h('div', { className: 'wb-page' },
+    h(T.ArchiveHeader, { key: active, id: active, typeSuggestions: ['角色', '势力', '世界观', '地点', '物品', '剧情'],
+      value: { name: cur.name, type: cur.type || '', tags: rec.tags || [] },
+      onChange: function (v) {
+        setTree(function (t) { return U.update(t, active, function (n) { return Object.assign({}, n, { name: v.name, type: v.type }); }); });
+        patchRec(active, { tags: v.tags });
+      } }),
+    h('section', null, h('h4', { className: 'wb-h' }, '正文'),
+      h(T.TextField, { multiline: true, variant: 'prose', rows: 4, ariaLabel: '正文', value: rec.body || '', placeholder: '大段自由文本：简介、设定、灵感……',
+        onChange: function (v) { patchRec(active, { body: v }); } })),
+    h('section', null, h('h4', { className: 'wb-h' }, '模块', h('span', { className: 'tt-count' }, (rec.modules || []).length)),
+      h(T.ModuleList, { modules: rec.modules || [], onChange: function (m) { patchRec(active, { modules: m }); },
+        footer: h(T.Button, { variant: 'quiet', icon: 'preset', onClick: function () { setShowPresets(true); } }, '从预设导入') })),
+    h(T.ReferenceList, { refs: refs, onJump: function (r) { setCvId(r.id); setView('canvas'); say('已跳转到“' + r.name + '”。'); } }))
+    : h('div', { className: 'wb-empty' }, h('b', null, '没有打开的档案'), '在左侧项目树点一个档案，它会在这里以标签页打开。');
+
+  var main = view === 'archive'
+    ? h('main', { className: 'wb-main' },
+        h('div', { className: 'wb-doc' },
+          h(T.DocTabs, { tabs: tabList, activeId: active, onActiveChange: setActive,
+            onTabsChange: function (t) { setTabs(t.map(function (x) { return { id: x.id }; })); }, onAdd: newArchive }),
+          h('div', { className: 'wb-scroll' }, editor)),
+        showPresets ? h('div', { className: 'wb-presets' }, h(T.PresetLibrary, { style: { flex: 1 }, presets: presets, onChange: setPresets,
+          currentModules: cur ? rec.modules || [] : undefined, onClose: function () { setShowPresets(false); },
+          onImport: function (p, mods) { if (!cur) return; patchRec(active, { modules: (rec.modules || []).concat(mods) }); say('已把“' + p.name + '”的 ' + mods.length + ' 个模块导入“' + cur.name + '”。'); } })) : null)
+    : h('main', { className: 'wb-main' }, h('div', { className: 'wb-canvas' },
+        cv ? h(T.RelationCanvas, { key: cv.id, name: cv.name, archives: archives, defaultGraph: cv.graph, wheelRequiresFocus: true, style: { height: 'auto' },
+          onChange: function (g) { setCanvases(function (cs) { return cs.map(function (c) { return c.id === cv.id ? Object.assign({}, c, { graph: g }) : c; }); }); } }) : null));
+
+  return h('div', { className: 'wb' }, top, side, main,
+    h(T.StatusBar, { className: 'wb-top', items: ['雾港纪事', countAll(tree) + ' 个档案', canvases.length + ' 张画布'], message: msg, right: '本地工程 · 离线' }),
+    h(T.Dialog, { open: !!pendingDelete, title: pendingDelete ? '删除“' + pendingDelete.node.name + '”？' : '', onClose: function () { setPendingDelete(null); },
+      footer: [h(T.Button, { key: 'c', onClick: function () { setPendingDelete(null); } }, '取消'),
+        h(T.Button, { key: 'd', variant: 'danger', onClick: function () {
+          var n = pendingDelete.node; pendingDelete.run(); setPendingDelete(null);
+          setTabs(function (t) { return t.filter(function (x) { return x.id !== n.id; }); }); say('已删除“' + n.name + '”。');
+        } }, '删除档案')] },
+      pendingDelete ? h('p', null, U.count(pendingDelete.node) ? '它下面的 ' + U.count(pendingDelete.node) + ' 个子档案会一起删除。' : '删除后无法从项目树恢复。') : null,
+      h('p', { style: { color: 'var(--ink-muted)', fontSize: 13 } }, '引用它的画布方块会变成“档案已删除”的灰色方块，连线保留。')));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>

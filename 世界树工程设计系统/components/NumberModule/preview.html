@@ -1,0 +1,22 @@
+<!-- @dsCard group="积木模块" height=230 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>NumberModule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 640 } },
+  h(T.ModuleCard, { kind: 'number', defaultTitle: '基础数值' },
+    h(T.NumberModule, { defaultData: { rows: [
+      { label: '年龄', value: '27', unit: '岁' },
+      { label: '身高', value: '168', unit: 'cm' },
+      { label: '雾港人口', value: '1,204,000', unit: '人' }] } }))));
+</script>
+</body>
+</html>

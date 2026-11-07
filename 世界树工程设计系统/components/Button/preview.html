@@ -1,0 +1,27 @@
+<!-- @dsCard group="基础" height=96 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'tt-demo-col' },
+  h('div', { className: 'tt-demo-row' },
+    h(T.Button, { variant: 'primary', icon: 'preset' }, '将当前模块存为预设'),
+    h(T.Button, { icon: 'import' }, '导入到当前档案'),
+    h(T.Button, { variant: 'quiet', icon: 'plus' }, '添加维度'),
+    h(T.Button, { variant: 'danger' }, '删除档案'),
+    h(T.Button, { disabled: true }, '不可用')),
+  h('div', { className: 'tt-demo-row' },
+    h(T.Button, { size: 'sm', variant: 'primary' }, '保存'),
+    h(T.Button, { size: 'sm', icon: 'history' }, '回退到此'),
+    h(T.Button, { size: 'sm', variant: 'quiet', tone: 'danger' }, '删除'))));
+</script>
+</body>
+</html>

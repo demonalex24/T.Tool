@@ -1,0 +1,19 @@
+<!-- @dsCard group="反馈" height=96 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>StatusBar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { className: 'tt-demo-col', style: { gap: 8 } },
+  h(T.StatusBar, { items: ['第一幕 · 人物纠葛', '6 个方块', '5 条关系'], right: '100%' }),
+  h(T.StatusBar, { items: ['第一幕 · 人物纠葛'], message: { tone: 'warn', text: '“林晚 → 沈既白”已经有一条关系了。同一方向的多重关系，请写进这条线的描述里。' }, right: '滚轮平移 · Ctrl+滚轮缩放' })));
+</script>
+</body>
+</html>

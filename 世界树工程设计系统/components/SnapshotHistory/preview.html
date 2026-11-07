@@ -1,0 +1,23 @@
+<!-- @dsCard group="关系画布" height=380 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SnapshotHistory</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+var now = Date.now(), m = 60000;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { width: 300, height: 340, display: 'flex' } },
+  h(T.SnapshotHistory, { style: { flex: 1 }, current: { nodes: 7, edges: 6, dirty: true }, onRestore: function () {},
+    snapshots: [
+      { id: 'a', label: '第一幕定稿', time: now - 40 * m, counts: { nodes: 6, edges: 5 } },
+      { id: 'b', label: '快照 13:05', time: now - 95 * m, counts: { nodes: 5, edges: 3 } },
+      { id: 'c', label: '回退前自动保存', time: now - 26 * 60 * m, auto: true, counts: { nodes: 8, edges: 9 } }] })));
+</script>
+</body>
+</html>

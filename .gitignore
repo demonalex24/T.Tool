@@ -1,0 +1,11 @@
+node_modules/
+dist/
+release/
+.verification/
+OC-Studio-0.18.0-alpha/
+世界树工程-T.Tool-1.0.1-Windows-x64/
+世界树工程-T.Tool-1.0.1-Windows-x64-解压即用.zip
+*.exe
+*.zip
+*.log
+NUL

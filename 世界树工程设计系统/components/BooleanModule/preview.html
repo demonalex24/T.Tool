@@ -1,0 +1,22 @@
+<!-- @dsCard group="积木模块" height=230 subtitle="是 / 否 / 未设定" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>BooleanModule</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
+
+</head>
+<body>
+<div id="root" class="tt-demo"></div>
+<script>
+var T = window.TTool, h = React.createElement;
+ReactDOM.createRoot(document.getElementById('root')).render(h('div', { style: { maxWidth: 680 } },
+  h(T.ModuleCard, { kind: 'bool', defaultTitle: '状态' },
+    h(T.BooleanModule, { defaultData: { rows: [
+      { statement: '是否拥有超自然能力？', value: false, yes: '是', no: '否' },
+      { statement: '婚姻状况', value: true, yes: '已婚', no: '未婚' },
+      { statement: '是否知道灯塔的秘密？', value: null, yes: '知道', no: '不知道' }] } }))));
+</script>
+</body>
+</html>
